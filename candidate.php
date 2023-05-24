@@ -74,20 +74,21 @@ $Program=$_POST['Program'];
 $Motivation=$_POST['Motivation'];
 $Election=$_POST['elections'];
 $Position=$_POST['position'];
+$photo ="upload/".$UserName.".jpeg";
 $login_query=mysqli_query($conn,"select * from candidate where FirstName='$UserName' and LastName='$LastName' ");
 //
 $count=mysqli_num_rows($login_query); 
-var_dump($UserName);
+var_dump($photo);
 var_dump($count);
-if($count=0){
-    $register_query=mysqli_query($conn,"  INSERT INTO `candidate` VALUES
-(100,'$Election', '$UserName', '$LastName', 'admin','$Position') ");
+
+if($count==0){
+$register_query=mysqli_query($conn,"  INSERT INTO `candidate`(election_id,FirstName,LastName,Photo,Position) VALUES
+('$Election', '$UserName', '$LastName', '$photo','$Position') ");
 _redirect('index.php');  
 
 }else if($count != 0){
     _redirect('vote.php');  
 }
-       
          
 }
             

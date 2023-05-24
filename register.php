@@ -47,17 +47,14 @@ include('header.php');
 </body>
 </html>
 
-<?php
-$login_query=mysqli_query($conn,"select * from users ");
-$count=mysqli_num_rows($login_query); 	
-$c = $count + 23;	
+<?php	
 if (isset($_POST['Register'])){
             
 $UserName=$_POST['UserName'];
 $Password=$_POST['Password'];
 $Email=$_POST['Email'];
-$register_query=mysqli_query($conn,"  INSERT INTO `users` VALUES
-($c,'$UserName', '$Email', '$Password', 'admin') ");
+$register_query=mysqli_query($conn,"  INSERT INTO `users`(username,email,password,is_admin) VALUES
+('$UserName', '$Email', '$Password', 'admin') ");
 _redirect('index.php');         
          
 }
